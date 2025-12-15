@@ -1,0 +1,13 @@
+# Python virtual environment
+venv/
+
+# Python cache
+__pycache__/
+.pytest_cache/
+
+# Test outputs
+reports/
+screenshots/
+
+# OS / Editor
+.vscode/
