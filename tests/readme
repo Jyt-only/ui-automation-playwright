@@ -1,0 +1,133 @@
+一、今天做了什么（一句话总结）
+完成了第一个 Python + Playwright 的 UI 自动化测试项目，并将代码通过 Git 推送到 GitHub，跑通了从本地编写 → 执行 → 版本管理 → 云端保存的完整流程。
+
+二、项目背景与目标
+学习目标
+理解什么是 UI 自动化
+使用 Playwright 操作真实浏览器页面
+使用 pytest 作为测试执行器
+建立规范的 Python 自动化项目结构
+学会使用 Git / GitHub 管理代码
+三、项目结构说明
+当前仓库结构如下：
+
+text
+复制代码
+ui-automation-playwright/
+├─ tests/
+│  └─ test_login.py
+├─ venv/
+├─ reports/
+├─ screenshots/
+└─ .gitignore
+各目录含义
+tests/
+存放 UI 自动化测试代码，是核心业务代码
+test_login.py
+第一个 UI 自动化用例：登录 saucedemo 网站
+venv/
+Python 虚拟环境（仅本地使用，不提交）
+reports / screenshots
+测试运行时生成的结果文件
+.gitignore
+Git 忽略规则，避免提交环境和临时文件
+四、Playwright 的 UI 自动化体现在哪里？
+UI 自动化体现在 模拟真实用户在浏览器中的操作：
+
+python
+复制代码
+page.goto("https://www.saucedemo.com/")
+page.fill("#user-name", "standard_user")
+page.fill("#password", "secret_sauce")
+page.click("#login-button")
+page.wait_for_selector(".inventory_list")
+这些代码分别对应：
+
+打开网页
+输入用户名和密码
+点击登录按钮
+等待登录成功后的页面元素出现
+👉 程序在替代人完成浏览器里的真实操作，这就是 UI 自动化。
+
+五、pytest 在项目中的角色
+pytest 是测试执行器
+负责：
+测试发现（test_*.py）
+测试运行
+结果统计
+报告生成
+常用命令：
+
+bash
+复制代码
+pytest
+pytest -q
+pytest --html=reports/report.html
+-q 参数说明
+-q = --quiet
+表示安静模式，只输出核心结果
+适合日常本地快速验证
+六、什么是断言（assert）
+断言用于 判断测试是否成功，例如：
+
+python
+复制代码
+assert "inventory" in page.url
+含义：
+
+断言当前页面 URL 必须包含 inventory，否则测试失败
+
+没有断言的测试，即使跑通，也不具备验证意义。
+
+七、虚拟环境（venv）与 VS Code
+使用 venv 隔离项目依赖
+激活方式：
+powershell
+复制代码
+.\venv\Scripts\Activate.ps1
+激活成功后终端前缀会显示：
+text
+复制代码
+(venv)
+VS Code 在识别项目后，可自动激活 venv，提高使用效率。
+
+八、Git 与 GitHub 的使用
+Git 的作用
+记录代码历史
+支持回滚
+支持多人协作
+GitHub 的作用
+云端备份
+展示学习成果
+工程能力证明
+今日完成的 Git 操作
+bash
+复制代码
+git init
+git add .
+git commit -m "Day 01: setup python playwright pytest and first ui test"
+git branch -M main
+git remote add origin https://github.com/Jyt-only/ui-automation-playwright.git
+git push -u origin main
+最终成果：
+✅ 本地代码成功推送到 GitHub 仓库
+
+九、今日关键认知总结
+UI 自动化 ≠ 接口请求
+UI 自动化是真实操作浏览器页面
+pytest 是“测试框架”，不是 Python 本身
+自动化测试的核心是 验证结果（断言）
+Git 管理的是“目录范围”
+GitHub 是工程学习和成长记录的重要工具
+十、当前学习状态评估
+环境：✅ 稳定
+测试：✅ 可重复执行
+工程结构：✅ 合理
+版本管理：✅ 标准
+已具备进入 工程化 UI 自动化（Page Object） 的基础。
+
+十一、下一步计划（Day-02）
+引入 Page Object 模式
+拆分页面逻辑与测试逻辑
+使用 pytest fixture 管理浏览器
+提高代码可维护性和可扩展性
